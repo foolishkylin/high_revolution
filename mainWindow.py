@@ -228,20 +228,21 @@ class Ui_MainWindow(object):
         self.horizontalLayout_4.setStretch(0, 4)
         self.horizontalLayout_4.setStretch(1, 6)
         self.tabWidget.addTab(self.changeDetectionTab, "")
+        
+        # tab4
         self.removalTab = QtWidgets.QWidget()
-
         self.removalTab.setObjectName("removalTab")
         self.layoutWidget = QtWidgets.QWidget(self.removalTab)
 
-        self.horizontalLayout_r = QtWidgets.QHBoxLayout(self.removalTab)
-        self.horizontalLayout_r.setObjectName("horizontalLayout_r")
+        self.horizontalLayout_r1 = QtWidgets.QHBoxLayout(self.removalTab)
+        self.horizontalLayout_r1.setObjectName("horizontalLayout_r1")
 
         self.layoutWidget.setGeometry(QtCore.QRect(11, 8, 531, 731))
         self.layoutWidget.setObjectName("layoutWidget")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.layoutWidget)
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
-        self.horizontalLayout_r.addLayout(self.verticalLayout_2)
+        self.horizontalLayout_r1.addLayout(self.verticalLayout_2)
         self.groupBox_8 = QtWidgets.QGroupBox(self.layoutWidget)
         font = QtGui.QFont()
         font.setPointSize(16)
@@ -296,12 +297,11 @@ class Ui_MainWindow(object):
         self.verticalLayout_18.addWidget(self.removalResultContainer)
 
         self.verticalLayout_17.addWidget(self.groupBox_9)
-        self.horizontalLayout_r.addLayout(self.verticalLayout_17)
-        self.horizontalLayout_r.setStretch(0, 4)
-        self.horizontalLayout_r.setStretch(1, 6)
+        self.horizontalLayout_r1.addLayout(self.verticalLayout_17)
+        self.horizontalLayout_r1.setStretch(0, 4)
+        self.horizontalLayout_r1.setStretch(1, 6)
         self.tabWidget.addTab(self.removalTab, "")
-        self.horizontalLayout_10.addWidget(self.tabWidget)
-        MainWindow.setCentralWidget(self.centralwidget)
+        # 菜单栏
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1356, 18))
         self.menubar.setObjectName("menubar")
@@ -316,7 +316,6 @@ class Ui_MainWindow(object):
         self.menu_file.addAction(self.actionQuit)
         self.menubar.addAction(self.menu_file.menuAction())
 
-        self.retranslateUi(MainWindow)
         self.tabWidget.setCurrentIndex(3)
         self.actionQuit.triggered.connect(MainWindow.close)
         self.CDBtn.clicked.connect(MainWindow.changeDetection)
@@ -332,7 +331,15 @@ class Ui_MainWindow(object):
         self.ADResetBtn.clicked.connect(MainWindow.resetADContainer)
         self.removalBtn.clicked.connect(MainWindow.Removal)
         self.removalResetBtn.clicked.connect(MainWindow.resetRemovalContainer)
+
+        # vvlj: 添加新的tab
+        self.add_tab4(MainWindow)
+
+        self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.horizontalLayout_10.addWidget(self.tabWidget)
+        MainWindow.setCentralWidget(self.centralwidget)
+
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -366,3 +373,95 @@ class Ui_MainWindow(object):
         self.menu_file.setTitle(_translate("MainWindow", "文件"))
         self.actionQuit.setText(_translate("MainWindow", "退出"))
 
+    def add_tab4(self, MainWindow):
+        '''
+        :param MainWindow: 的
+        :return:
+        '''
+        # 的
+        self.removalTab1 = QtWidgets.QWidget()
+
+        self.removalTab1.setObjectName("removalTab1")
+        self.layoutWidget1 = QtWidgets.QWidget(self.removalTab1)
+
+        self.horizontalLayout_r11 = QtWidgets.QHBoxLayout(self.removalTab1)
+        self.horizontalLayout_r11.setObjectName("horizontalLayout_r11")
+
+        self.layoutWidget1.setGeometry(QtCore.QRect(11, 8, 531, 731))
+        self.layoutWidget1.setObjectName("layoutWidget1")
+        self.verticalLayout_21 = QtWidgets.QVBoxLayout(self.layoutWidget1)
+        self.verticalLayout_21.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_21.setObjectName("verticalLayout_2")
+        self.horizontalLayout_r11.addLayout(self.verticalLayout_21)
+        self.groupBox_81 = QtWidgets.QGroupBox(self.layoutWidget1)
+        font1 = QtGui.QFont()
+        font1.setPointSize(16)
+        self.groupBox_81.setFont(font1)
+        self.groupBox_81.setObjectName("groupBox_8")
+        self.verticalLayout_91 = QtWidgets.QVBoxLayout(self.groupBox_81)
+        self.verticalLayout_91.setObjectName("verticalLayout_9")
+        self.removalOriginImageContainer1 = QtWidgets.QGraphicsView(self.groupBox_81)
+        self.removalOriginImageContainer1.setObjectName("removalOriginImageContainer")
+        self.verticalLayout_91.addWidget(self.removalOriginImageContainer1)
+        self.removalChoseImageBtn1 = QtWidgets.QPushButton(self.groupBox_81)
+        font1 = QtGui.QFont()
+        font1.setPointSize(13)
+        self.removalChoseImageBtn1.setFont(font1)
+        self.removalChoseImageBtn1.setObjectName("removalChoseImageBtn")
+        self.verticalLayout_91.addWidget(self.removalChoseImageBtn1)
+        self.verticalLayout_21.addWidget(self.groupBox_81)
+        self.line_41 = QtWidgets.QFrame(self.layoutWidget1)
+        self.line_41.setFrameShape(QtWidgets.QFrame.HLine)
+        self.line_41.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line_41.setObjectName("line_4")
+        self.verticalLayout_21.addWidget(self.line_41)
+        self.horizontalLayout_91 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_91.setObjectName("horizontalLayout_91")
+        self.removalBtn1 = QtWidgets.QPushButton(self.layoutWidget1)
+        self.removalBtn1.setObjectName("removalBtn")
+        self.horizontalLayout_91.addWidget(self.removalBtn1)
+        self.removalResetBtn1 = QtWidgets.QPushButton(self.layoutWidget1)
+        self.removalResetBtn1.setObjectName("removalResetBtn")
+        self.horizontalLayout_91.addWidget(self.removalResetBtn1)
+        self.verticalLayout_21.addLayout(self.horizontalLayout_91)
+        self.verticalLayout_21.setStretch(0, 1)
+        self.layoutWidget_21 = QtWidgets.QWidget(self.removalTab1)
+        self.layoutWidget_21.setGeometry(QtCore.QRect(541, 13, 781, 731))
+        self.layoutWidget_21.setObjectName("layoutWidget_2")
+        self.verticalLayout_171 = QtWidgets.QVBoxLayout(self.layoutWidget_21)
+        self.verticalLayout_171.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_171.setObjectName("verticalLayout_17")
+        self.groupBox_91 = QtWidgets.QGroupBox(self.layoutWidget_21)
+        font1 = QtGui.QFont()
+        font1.setPointSize(16)
+        self.groupBox_91.setFont(font1)
+        self.groupBox_91.setObjectName("groupBox_9")
+        self.verticalLayout_181 = QtWidgets.QVBoxLayout(self.groupBox_91)
+        self.verticalLayout_181.setObjectName("verticalLayout_18")
+
+        self.removalResultContainer1 = QtWidgets.QGraphicsView(self.groupBox_91)
+        font1 = QtGui.QFont()
+        font1.setPointSize(16)
+        self.removalResultContainer1.setFont(font1)
+        self.removalResultContainer1.setObjectName("removalResultContainer")
+        self.verticalLayout_181.addWidget(self.removalResultContainer1)
+
+        self.verticalLayout_171.addWidget(self.groupBox_91)
+        self.horizontalLayout_r11.addLayout(self.verticalLayout_171)
+        self.horizontalLayout_r11.setStretch(0, 4)
+        self.horizontalLayout_r11.setStretch(1, 6)
+        self.tabWidget.addTab(self.removalTab1, "")
+
+        # 设置文字
+        _translate = QtCore.QCoreApplication.translate
+        self.groupBox_81.setTitle(_translate("MainWindow", "原图"))
+        self.removalChoseImageBtn1.setText(_translate("MainWindow", "选择图片"))
+        self.removalBtn1.setText(_translate("MainWindow", "地物分类"))
+        self.removalResetBtn1.setText(_translate("MainWindow", "重置"))
+        self.groupBox_91.setTitle(_translate("MainWindow", "地物分类结果"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.removalTab1), _translate("MainWindow", "地物分类"))
+
+        # 按钮功能
+        self.removalChoseImageBtn1.clicked.connect(MainWindow.loadImage)  # vvlj： 注意，此处需要联动改变MainWindow.loadImage
+        self.removalBtn1.clicked.connect(MainWindow.feature_classification)
+        self.removalResetBtn1.clicked.connect(MainWindow.resetRemovalContainer1)  # vvlj： 注意，此处需要添加MainWindow.resetRemovalContainer

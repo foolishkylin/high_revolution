@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 
-# Author: 曾鹏慷、朱锦涛
-# Time:   2019/8/10
+# Author: 曾鹏慷、朱锦涛、林炯城、辜仰淦
+# Time:   2019/8/10 ~
 # Name:   软件部分
 
 import sys
@@ -37,7 +37,6 @@ class MyThread(QThread):#线程类
              #通过自定义信号把传递给槽函数
 
 
-
 class MyMainWindow(QMainWindow, Ui_MainWindow):
     # 图片容器是否为空
     # 变化检测
@@ -65,6 +64,11 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
     # 去云雾
     isRemovalOriginImageContainerEmpty = True
     isRemovalResultImageContainerEmpty = True
+
+    # 去云雾
+    isRemovalOriginImageContainerEmpty1 = True
+    isRemovalResultImageContainerEmpty1 = True
+
     # 原图名字
     removalOriginImageName = ''
 
@@ -213,6 +217,11 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
                 self.isRemovalOriginImageContainerEmpty = False
                 self.removalOriginImageName = imageName
 
+            elif sender == self.removalChoseImageBtn1:
+                container = self.removalOriginImageContainer1
+                self.isRemovalOriginImageContainerEmpty1 = False
+                self.removalOriginImageName1 = imageName
+
             normalImageName = imageName.split(".")[0] + '.jpg'
             image = QPixmap()
             hasImage = image.load(normalImageName)
@@ -229,6 +238,7 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
     def changeDetection(self):
         if self.isCDOriginImageContainer1Empty or self.isCDOriginImageContainer2Empty:
             QMessageBox.warning(self, "提示", "请选择图片")
+            # QMessageBox.about(None, "提示", "未选择原图！")
         else:
             self.statusbar.showMessage("正在处理")
             self.showLoadingBar()
@@ -270,7 +280,6 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
             self.isCDResultImageContainerEmpty = True
 
         self.statusbar.showMessage("重置成功")
-
     def showpicture(self,filepath):
         self.showRealResultImage(filepath)
 
@@ -292,9 +301,7 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
             self.originImageName = self.SSOriginImageName
             self.container = self.SSResultContainer
 
-            # self.testTimer = QTimer()  # 创建定时器
-            # self.testTimer.timeout.connect(self.showResultImage)  # 定时超时事件绑定show_time这个函数
-            # self.testTimer.start(3000)  # 定时器每一秒执行一次
+
 
             try:
                 path = self.SSOriginImageName
@@ -372,7 +379,9 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
     def Removal(self):
 
         if self.isRemovalOriginImageContainerEmpty:
+            print('Removal')
             QMessageBox.warning(self, "提示", "未选择原图")
+            # QMessageBox.about(None, "提示", "未选择原图！")
         else:
             self.statusbar.showMessage("正在处理")
             self.showLoadingBar()
@@ -385,7 +394,7 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
             # self.testTimer.start(1500)  # 定时器每一秒执行一次
 
             # 清除结果容器的图片
-            if not self.isRemovalResultImageContainerEmpty:
+            if not self.isRemovalResultImageContainerEmpty1:
                 self.removalResultContainer.scene.clear()
                 self.isRemovalResultImageContainerEmpty = True
             # 显示处理图片
@@ -408,6 +417,53 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
         if not self.isRemovalResultImageContainerEmpty:
             self.removalResultContainer.scene.clear()
             self.isRemovalResultImageContainerEmpty = True
+
+        self.statusbar.showMessage("重置成功")
+
+    def feature_classification(self):
+        """
+        author : egan
+        :return:
+        """
+        if self.isRemovalOriginImageContainerEmpty1:
+            QMessageBox.warning(self, "提示", "未选择原图")
+        else:
+            self.statusbar.showMessage("正在处理")
+            self.showLoadingBar()
+
+            self.originImageName = self.removalOriginImageName1
+            self.container = self.removalResultContainer1
+
+            # self.testTimer = QTimer()  # 创建定时器
+            # self.testTimer.timeout.connect(self.showResultImage)  # 定时超时事件绑定show_time这个函数
+            # self.testTimer.start(1500)  # 定时器每一秒执行一次
+
+            # 清除结果容器的图片
+            if not self.isRemovalResultImageContainerEmpty1:
+                self.removalResultContainer1.scene.clear()
+                self.isRemovalResultImageContainerEmpty1 = True
+            # 显示处理图片
+            try:
+                filename = 'predict_image.png'
+                print(filename)
+                self.showRealResultImage(filename)
+            except Exception as e:
+                print(e)
+            self.closeLoadingBar()
+
+
+    # 清除地物分类容器内的图片
+    def resetRemovalContainer1(self):
+        if self.isRemovalOriginImageContainerEmpty1 and self.isRemovalResultImageContainerEmpty1:
+            return
+        # vvlj： 注意，此处需要添加isRemovalOriginImageContainerEmpty1， isRemovalResultImageContainerEmpty1
+
+        if not self.isRemovalOriginImageContainerEmpty1:
+            self.removalOriginImageContainer1.scene.clear()
+            self.isRemovalOriginImageContainerEmpty1 = True
+        if not self.isRemovalResultImageContainerEmpty1:
+            self.removalResultContainer1.scene.clear()
+            self.isRemovalResultImageContainerEmpty1 = True
 
         self.statusbar.showMessage("重置成功")
 
