@@ -7,6 +7,7 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from interface.image_retrieval import InfoSearchTab, ImageRetrieval
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -334,6 +335,15 @@ class Ui_MainWindow(object):
 
         # vvlj: 添加新的tab
         self.add_tab4(MainWindow)
+        ## vvlj: 添加新的tab
+        self.infoSearchTab = InfoSearchTab()
+        self.infoSearchTab.setupUi(self.tabWidget)
+            # vvlj: 在此处添加按钮功能,可考虑放在InfoSearchTab内
+        # self.infoSearchTab.set_click(MainWindow)
+        self.image_retrieval = ImageRetrieval(MainWindow)
+        self.infoSearchTab.pushButton.clicked.connect(self.image_retrieval.loadImage)
+        self.infoSearchTab.pushButton_2.clicked.connect(self.image_retrieval.change_page)
+        self.infoSearchTab.pushButton_3.clicked.connect(self.image_retrieval.change_page)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
